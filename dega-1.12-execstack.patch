@@ -1,0 +1,13 @@
+diff -duNr dega-1.12.orig/doze/dam.cpp dega-1.12/doze/dam.cpp
+--- dega-1.12.orig/doze/dam.cpp	2007-09-16 15:58:50.000000000 +0200
++++ dega-1.12/doze/dam.cpp	2007-09-16 15:59:44.000000000 +0200
+@@ -227,6 +227,9 @@
+ 
+   DamJumpTab(); // Jump table
+   DamTables();  // Other tables
++  ot("%%ifidn __OUTPUT_FORMAT__,elf\n");
++  ot("section .note.GNU-stack noalloc noexec nowrite progbits\n");
++  ot("%%endif\n");
+   return 0;
+ }
+ 
