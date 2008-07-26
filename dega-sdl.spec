@@ -1,14 +1,16 @@
 Summary: Dega is a Sega Master System emulator
 Name: dega-sdl
 Version: 1.12
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: Distributable
 Group: Applications/Emulators
 URL: http://www.emulinks.de/emus/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source: http://www.emulinks.de/emus/dega-%{version}.tar.gz
 Patch0: dega-1.12-execstack.patch
-ExclusiveArch: %{ix86}
+# This is to build only for i386 on plague
+#ExclusiveArch: %{ix86}
+ExclusiveArch: i386
 BuildRequires: SDL-devel >= 1.2.0, nasm
 
 %description
@@ -39,6 +41,9 @@ rm -rf %{buildroot}
 %doc README dega.txt ChangeLog
 
 %changelog
+* Sat Jul 26 2008 Andrea Musuruane <musuruan@gmail.com> 1.12-3
+- used a workaround to build only for i386 on plague
+
 * Mon Sep 17 2007 Andrea Musuruane <musuruan@gmail.com> 1.12-2
 - added missing %%{?dist} tag in the release field
 - using standard Fedora flags for compiling
