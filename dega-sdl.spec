@@ -1,7 +1,7 @@
 Summary: Dega is a Sega Master System emulator
 Name: dega-sdl
 Version: 1.12
-Release: 3%{?dist}
+Release: 4%{?dist}
 License: Distributable
 Group: Applications/Emulators
 URL: http://www.emulinks.de/emus/
@@ -41,6 +41,9 @@ rm -rf %{buildroot}
 %doc README dega.txt ChangeLog
 
 %changelog
+* Wed Jul 30 2008 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info - 1.12-4
+- rebuild for buildsys cflags issue
+
 * Sat Jul 26 2008 Andrea Musuruane <musuruan@gmail.com> 1.12-3
 - used a workaround to build only for i386 on plague
 
