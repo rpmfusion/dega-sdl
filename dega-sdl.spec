@@ -1,16 +1,20 @@
 Summary: Dega is a Sega Master System emulator
 Name: dega-sdl
 Version: 1.12
-Release: 4%{?dist}
+Release: 5%{?dist}
 License: Distributable
 Group: Applications/Emulators
 URL: http://www.emulinks.de/emus/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source: http://www.emulinks.de/emus/dega-%{version}.tar.gz
 Patch0: dega-1.12-execstack.patch
-# This is to build only for i386 on plague
+# This is to build only for i386/i586 on plague
 #ExclusiveArch: %{ix86}
+%if 0%{?fedora} >= 11
+ExclusiveArch: i586
+%else
 ExclusiveArch: i386
+%endif
 BuildRequires: SDL-devel >= 1.2.0, nasm
 
 %description
@@ -41,6 +45,9 @@ rm -rf %{buildroot}
 %doc README dega.txt ChangeLog
 
 %changelog
+* Sat Mar 28 2009 Andrea Musuruane <musuruan@gmail.com> 1.12-5
+- fixed ExclusiveArch for F11
+
 * Wed Jul 30 2008 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info - 1.12-4
 - rebuild for buildsys cflags issue
 
