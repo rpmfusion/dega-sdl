@@ -10,8 +10,8 @@ Source: http://www.emulinks.de/emus/dega-%{version}.tar.gz
 Patch0: dega-1.12-execstack.patch
 # This is to build only for i386/i586 on plague
 #ExclusiveArch: %{ix86}
-%if 0%{?fedora} >= 11
-ExclusiveArch: i586
+%if 0%{?fedora} > 11 || 0%{?rhel} >= 6
+ExclusiveArch: i686
 %else
 ExclusiveArch: i386
 %endif
@@ -47,6 +47,7 @@ rm -rf %{buildroot}
 %changelog
 * Thu Feb 09 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.12-6
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
+- Fix default arch
 
 * Sat Mar 28 2009 Andrea Musuruane <musuruan@gmail.com> 1.12-5
 - fixed ExclusiveArch for F11
