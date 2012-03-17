@@ -1,29 +1,26 @@
 Summary: Dega is a Sega Master System emulator
 Name: dega-sdl
 Version: 1.12
-Release: 5%{?dist}
+Release: 7%{?dist}
 License: Distributable
 Group: Applications/Emulators
 URL: http://www.emulinks.de/emus/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source: http://www.emulinks.de/emus/dega-%{version}.tar.gz
 Patch0: dega-1.12-execstack.patch
-# This is to build only for i386/i586 on plague
-#ExclusiveArch: %{ix86}
-%if 0%{?fedora} >= 11
-ExclusiveArch: i586
-%else
-ExclusiveArch: i386
-%endif
+Patch1: dega-1.12-Makefile.patch
+# This is to build only for i386/i686 on plague
+ExclusiveArch: i686
 BuildRequires: SDL-devel >= 1.2.0, nasm
 
 %description
-Dega/SDL is a linux port to the original Dega Sega 
+Dega/SDL is a Linux port to the original Dega Sega 
 Master System / Mark III / Game Gear emulator for DOS. 
 
 %prep
 %setup -q -n dega-%{version}
 %patch0 -p1
+%patch1 -p1
 # Using Fedora OPTFLAGS
 sed -i 's/^OPTFLAGS=/#OPTFLAGS=/' Makefile
 
@@ -45,6 +42,13 @@ rm -rf %{buildroot}
 %doc README dega.txt ChangeLog
 
 %changelog
+* Sun Feb 12 2012 Andrea Musuruane <musuruan@gmail.com> 1.12-7
+- patched Makefile to link against libm
+
+* Thu Feb 09 2012 Nicolas Chauvet <kwizart@gmail.com> - 1.12-6
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
+- Fix default arch
+
 * Sat Mar 28 2009 Andrea Musuruane <musuruan@gmail.com> 1.12-5
 - fixed ExclusiveArch for F11
 
