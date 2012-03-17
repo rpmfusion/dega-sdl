@@ -1,0 +1,12 @@
+diff -durN dega-1.12.orig/Makefile dega-1.12/Makefile
+--- dega-1.12.orig/Makefile	2001-12-20 00:51:14.000000000 +0100
++++ dega-1.12/Makefile	2012-02-12 10:17:15.379107014 +0100
+@@ -18,7 +18,7 @@
+ all: dega
+ 
+ dega: $(SDLOBJ) $(DOZEOBJ) $(MASTOBJ)
+-	$(CC) -o dega sdl/main.o $(DOZEOBJ) $(MASTOBJ) $(shell sdl-config --libs)
++	$(CC) -o dega sdl/main.o $(DOZEOBJ) $(MASTOBJ) $(shell sdl-config --libs) -lm
+ 
+ doze/dozea.o: doze/dozea.asm
+ 	nasm -f elf doze/dozea.asm
