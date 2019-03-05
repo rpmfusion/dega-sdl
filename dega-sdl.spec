@@ -11,7 +11,7 @@ Patch0: dega-1.12-execstack.patch
 Patch1: dega-1.12-Makefile.patch
 # This is to build only for i386/i686 on plague
 ExclusiveArch: i686
-BuildRequires: SDL-devel >= 1.2.0, nasm
+BuildRequires: SDL-devel >= 1.2.0, nasm, gcc
 
 %description
 Dega/SDL is a Linux port to the original Dega Sega 
