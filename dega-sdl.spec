@@ -1,7 +1,7 @@
 Summary: Dega is a Sega Master System emulator
 Name: dega-sdl
 Version: 1.12
-Release: 21%{?dist}
+Release: 22%{?dist}
 License: Distributable
 Group: Applications/Emulators
 URL: http://www.emulinks.de/emus/
@@ -42,6 +42,9 @@ rm -rf %{buildroot}
 %doc README dega.txt ChangeLog
 
 %changelog
+* Thu Aug 03 2023 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 1.12-22
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_39_Mass_Rebuild
+
 * Mon Aug 08 2022 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 1.12-21
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild and ffmpeg
   5.1
