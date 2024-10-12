@@ -1,0 +1,10 @@
+--- dega-1.12/mast/mast.h.header	2007-09-14 21:28:21.000000000 +0900
++++ dega-1.12/mast/mast.h	2024-10-12 14:26:03.568339039 +0900
+@@ -31,6 +31,7 @@ extern unsigned int MastEx; // Extra opt
+ extern int MastDrawDo; // 1 to draw image
+ int MastInit();
+ int MastExit();
++int MastLoadRom(char *Name,unsigned char **pRom,int *pRomLen);
+ int MastSetRom(unsigned char *Rom,int RomLen);
+ int MastReset();
+ int MastHardReset();

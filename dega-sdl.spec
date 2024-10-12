@@ -1,7 +1,7 @@
 Summary: Dega is a Sega Master System emulator
 Name: dega-sdl
 Version: 1.12
-Release: 24%{?dist}
+Release: 25%{?dist}
 License: Distributable
 Group: Applications/Emulators
 URL: http://www.emulinks.de/emus/
@@ -9,6 +9,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source: http://www.emulinks.de/emus/dega-%{version}.tar.gz
 Patch0: dega-1.12-execstack.patch
 Patch1: dega-1.12-Makefile.patch
+# Add function prototype to header (-Werror=implicit-funciton-declaration)
+Patch2: dega-1.12-add-prototype.patch
 # This is to build only for i386/i686 on plague
 ExclusiveArch: i686
 BuildRequires: SDL-devel >= 1.2.0, nasm, gcc-c++
@@ -21,6 +23,7 @@ Master System / Mark III / Game Gear emulator for DOS.
 %setup -q -n dega-%{version}
 %patch -P0 -p1
 %patch -P1 -p1
+%patch -P2 -p1
 # Using Fedora OPTFLAGS
 sed -i 's/^OPTFLAGS=/#OPTFLAGS=/' Makefile
 
@@ -42,6 +45,9 @@ rm -rf %{buildroot}
 %doc README dega.txt ChangeLog
 
 %changelog
+* Sat Oct 12 2024 Mamoru TASAKA <mtasaka@fedoraproject.org> - 1.12-25
+- Add function prototype to header (-Werror=implicit-funciton-declaration)
+
 * Fri Aug 02 2024 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 1.12-24
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_41_Mass_Rebuild
 
