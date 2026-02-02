@@ -1,11 +1,9 @@
 Summary: Dega is a Sega Master System emulator
 Name: dega-sdl
 Version: 1.12
-Release: 28%{?dist}
+Release: 29%{?dist}
 License: Distributable
-Group: Applications/Emulators
 URL: http://www.emulinks.de/emus/
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source: http://www.emulinks.de/emus/dega-%{version}.tar.gz
 Patch0: dega-1.12-execstack.patch
 Patch1: dega-1.12-Makefile.patch
@@ -13,7 +11,10 @@ Patch1: dega-1.12-Makefile.patch
 Patch2: dega-1.12-add-prototype.patch
 # This is to build only for i386/i686 on plague
 ExclusiveArch: i686
-BuildRequires: SDL-devel >= 1.2.0, nasm, gcc-c++
+BuildRequires: sdl12-compat-devel >= 1.2.0
+BuildRequires: nasm
+BuildRequires: gcc-c++
+BuildRequires: make
 
 %description
 Dega/SDL is a Linux port to the original Dega Sega 
@@ -29,22 +30,21 @@ sed -i 's/^OPTFLAGS=/#OPTFLAGS=/' Makefile
 
 %build
 export OPTFLAGS="$RPM_OPT_FLAGS"
-make %{?_smp_mflags}
+%make_build
 
 %install
-rm -rf %{buildroot}
 install -d -m 0755 %{buildroot}%{_bindir}
 install -m 0755 dega %{buildroot}%{_bindir}/
 
-%clean
-rm -rf %{buildroot}
-
 %files
-%defattr(-,root,root,0755)
 %{_bindir}/dega
 %doc README dega.txt ChangeLog
 
 %changelog
+* Mon Feb 02 2026 Andrea Musuruane <musuruan@gmail.com> - 1.12-29
+- Switch to sdl12-compat
+- Spec cleanup and modernization
+
 * Mon Feb 02 2026 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 1.12-28
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_44_Mass_Rebuild
 
